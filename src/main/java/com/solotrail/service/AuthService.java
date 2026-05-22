@@ -16,6 +16,9 @@ public class AuthService {
     private final BCryptPasswordEncoder passwordEncoder =
             new BCryptPasswordEncoder();
 
+    @Autowired
+    private JwtService jwtService;
+
     public String registerUser(RegisterRequest request) {
 
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
@@ -47,7 +50,7 @@ public class AuthService {
             return "Invalid password!";
         }
 
-        return "Login successful!";
+        return jwtService.generateToken(user.getEmail());
     }
 }
 
