@@ -28,5 +28,20 @@ public class AuthService {
 
         return "User registered successfully!";
     }
+
+    public String loginUser(String email, String password) {
+
+        User user = userRepository.findByEmail(email).orElse(null);
+
+        if (user == null) {
+            return "User not found!";
+        }
+
+        if (!user.getPassword().equals(password)) {
+            return "Invalid password!";
+        }
+
+        return "Login successful!";
+    }
 }
 
