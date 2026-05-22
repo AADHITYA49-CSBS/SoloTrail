@@ -4,6 +4,7 @@ import com.solotrail.dto.RegisterRequest;
 import com.solotrail.entity.User;
 import com.solotrail.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +12,9 @@ public class AuthService {
 
     @Autowired
     private UserRepository userRepository;
+
+    private final BCryptPasswordEncoder passwordEncoder =
+            new BCryptPasswordEncoder();
 
     public String registerUser(RegisterRequest request) {
 
@@ -22,7 +26,9 @@ public class AuthService {
 
         user.setName(request.getName());
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
+        user.setPassword(
+                passwordEncoder.encode(request.getPassword())
+        );
 
         userRepository.save(user);
 
@@ -37,7 +43,7 @@ public class AuthService {
             return "User not found!";
         }
 
-        if (!user.getPassword().equals(password)) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             return "Invalid password!";
         }
 
