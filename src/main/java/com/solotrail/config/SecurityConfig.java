@@ -26,14 +26,17 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/swagger-ui/**",
-                                "/v3/api-docs/**",
-                                "/swagger-ui.html",
-                                "/api/auth/register",
-                                "/api/auth/login"
-                        ).permitAll()
-                        .anyRequest().authenticated()
+                    .requestMatchers(
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**",
+                        "/swagger-ui.html",
+                        "/api/auth/register",
+                        "/api/auth/login",
+                        "/api/hotels/**",
+                        "/api/guides/**",
+                        "/api/attractions/**"
+                    ).permitAll()
+                    .anyRequest().authenticated()
                 )
                 .formLogin(form -> form.disable())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
