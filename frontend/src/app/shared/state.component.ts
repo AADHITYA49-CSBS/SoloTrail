@@ -1,0 +1,1 @@
+import {Component,Input} from '@angular/core';@Component({selector:'app-state',standalone:true,template:`<div class="state"><b>{{error?'Could not load this yet':loading?'Finding the best of Chennai...':'Nothing here yet'}}</b><p>{{error||empty}}</p></div>`})export class StateComponent{@Input()loading=false;@Input()error='';@Input()empty='Try again later.'}
