@@ -1,0 +1,20 @@
+import { Routes } from '@angular/router';
+import { authGuard } from './core/auth.guard';
+import { HomeComponent } from './pages/home.component';
+import { LoginComponent } from './pages/login.component';
+import { RegisterComponent } from './pages/register.component';
+import { AttractionsComponent } from './pages/attractions.component';
+import { HotelsComponent } from './pages/hotels.component';
+import { GuidesComponent } from './pages/guides.component';
+import { TripsComponent } from './pages/trips.component';
+
+export const routes: Routes = [
+  { path: '', component: HomeComponent, canActivate: [authGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'attractions', component: AttractionsComponent, canActivate: [authGuard] },
+  { path: 'hotels', component: HotelsComponent, canActivate: [authGuard] },
+  { path: 'guides', component: GuidesComponent, canActivate: [authGuard] },
+  { path: 'trips', component: TripsComponent, canActivate: [authGuard] },
+  { path: '**', redirectTo: '' }
+];
