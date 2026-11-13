@@ -16,18 +16,24 @@ public class TripController {
 
     @PostMapping
     public Trip createTrip(@RequestBody Trip trip) {
-        return tripService.createTrip(trip);
+        return tripService.createTrip(trip, currentUserEmail());
     }
 
     @GetMapping("/user/{userId}")
     public List<Trip> getTripsByUser(@PathVariable Long userId) {
-        return tripService.getTripsByUser(userId);
+        return tripService.getTripsByUser(userId, currentUserEmail());
     }
 
     @GetMapping("/destination/{destination}")
     public List<Trip> getTripsByDestination(@PathVariable String destination) {
         return tripService.getTripsByDestination(destination);
     }
-}
 
+    private String currentUserEmail() {
+        return org.springframework.security.core.context.SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
+    }
+}
 
