@@ -2,9 +2,10 @@ import {Injectable,inject} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable,tap} from 'rxjs';
 import {AuthUser} from './models';
+import {environment} from '../../environments/environment';
 @Injectable({providedIn:'root'})
 export class AuthService{
- private http=inject(HttpClient); private base='/api/auth';
+ private http=inject(HttpClient); private base=`${environment.apiUrl}/auth`;
  register(data:{name:string;email:string;password:string}):Observable<string>{return this.http.post(`${this.base}/register`,data,{responseType:'text'})}
  login(data:{email:string;password:string}):Observable<string>{return this.http.post(`${this.base}/login`,data,{responseType:'text'}).pipe(tap(t=>this.session(t)))}
  private session(value:string){const token=value.replace(/^"|"$/g,'');localStorage.setItem('solotrail_token',token);try{const p=JSON.parse(atob(token.split('.')[1])) as Record<string,unknown>;localStorage.setItem('solotrail_user',JSON.stringify({id:p['userId']??p['id'],email:p['sub']}))}catch{}}
