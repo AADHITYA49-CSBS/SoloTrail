@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AttractionRepository extends JpaRepository<Attraction, Long> {
 
-    List<Attraction> findByCity(String city);
+    List<Attraction> findByCityIgnoreCase(String city);
 
     List<Attraction> findByCategory(String category);
 }
