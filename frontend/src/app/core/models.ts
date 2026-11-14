@@ -4,3 +4,6 @@ export interface Restaurant{id:number;restaurantName:string;city:string;cuisine:
 export interface TouristGuide{id:number;guideName:string;city:string;languages:string;experienceYears:number;pricePerDay:number;specialization:string;available:boolean;contactNumber:string}
 export interface Trip{id?:number;source:string;destination:string;travelDate:string;budget:number;transportMode:string;userId?:number}
 export interface AuthUser{id?:number;name?:string;email?:string}
+export interface BookingRequest{source:string;destination:string;travelDate:string;transportMode:string;hotelId?:number;restaurantId?:number;guideId?:number}
+export interface Booking{id:number;bookingReference:string;userId:number;source:string;destination:string;travelDate:string;transportMode:string;transportFare:number;hotelName?:string;hotelCost?:number;restaurantName?:string;restaurantCost?:number;guideName?:string;guideCost?:number;totalAmount:number;paymentStatus:string;createdAt:string}
+export interface ChatResponse{message:string;provider:string}
