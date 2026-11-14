@@ -34,7 +34,7 @@ public class DemoCatalogSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        if (attractionRepository.count() == 0) {
+        if (attractionRepository.findByCityIgnoreCase("Chennai").isEmpty()) {
             attractionRepository.saveAll(List.of(
                     new Attraction(null, "Marina Beach", "Chennai", "Beach", 4.5, true,
                             "A relaxed shoreline for sunrise walks and evening sunsets."),
@@ -42,7 +42,7 @@ public class DemoCatalogSeeder implements CommandLineRunner {
                             "A historic Dravidian temple in the heart of Mylapore.")
             ));
         }
-        if (hotelRepository.count() == 0) {
+        if (hotelRepository.findByCityIgnoreCase("Chennai").isEmpty()) {
             hotelRepository.saveAll(List.of(
                     new Hotel(null, "Bay View Residency", "Chennai", 2200.0, 4.3, true,
                             "A comfortable stay close to the city and the coast."),
@@ -50,7 +50,7 @@ public class DemoCatalogSeeder implements CommandLineRunner {
                             "A quiet, simple base for exploring local neighbourhoods.")
             ));
         }
-        if (restaurantRepository.count() == 0) {
+        if (restaurantRepository.findByCityIgnoreCase("Chennai").isEmpty()) {
             restaurantRepository.saveAll(List.of(
                     new Restaurant(null, "South Street Kitchen", "Chennai", "South Indian", "₹₹", 4.4, true,
                             "Fresh dosas, thalis, and local filter coffee."),
@@ -58,7 +58,7 @@ public class DemoCatalogSeeder implements CommandLineRunner {
                             "Coastal flavours and a relaxed dinner setting.")
             ));
         }
-        if (guideRepository.count() == 0) {
+        if (guideRepository.findByCityIgnoreCase("Chennai").isEmpty()) {
             guideRepository.saveAll(List.of(
                     new TouristGuide(null, "Kavya", "Chennai", "English, Tamil", 5, 1200.0,
                             "Culture and food walks", true, "Demo contact"),

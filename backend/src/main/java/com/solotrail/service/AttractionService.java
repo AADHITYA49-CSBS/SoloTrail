@@ -18,7 +18,7 @@ public class AttractionService {
     }
 
     public List<Attraction> getAttractionsByCity(String city) {
-        return attractionRepository.findByCity(city);
+        return attractionRepository.findByCityIgnoreCase(city);
     }
 
     public List<Attraction> getAttractionsByCategory(String category) {

@@ -28,7 +28,8 @@ The local frontend is available at `http://localhost:4200` and the backend at
 4. The user selects any services and completes a simulated single checkout.
 5. A booking reference and rupee total are saved in MySQL with `DEMO_PAID` status.
 6. The `Ask Solo` page provides travel guidance through an optional AI provider or the
-   built-in fallback assistant.
+   built-in fallback assistant. The assistant receives the current Chennai catalog and
+   the logged-in user's saved plans and demo bookings as context.
 
 The checkout is intentionally simulated: it does not charge money or issue a real ticket.
 

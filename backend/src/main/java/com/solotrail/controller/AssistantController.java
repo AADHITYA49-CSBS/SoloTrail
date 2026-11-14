@@ -16,6 +16,13 @@ public class AssistantController {
 
     @PostMapping("/chat")
     public ChatResponse chat(@Valid @RequestBody ChatRequest request) {
-        return assistantService.reply(request.message());
+        return assistantService.reply(request.message(), currentUserEmail());
+    }
+
+    private String currentUserEmail() {
+        return org.springframework.security.core.context.SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
     }
 }
